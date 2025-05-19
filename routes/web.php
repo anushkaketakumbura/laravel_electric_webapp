@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Slider;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -9,7 +10,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', function () {
-    return view('frontend.home');
+    $sliders = Slider::all();
+    return view('frontend.home',compact('sliders'));
 });
 
 
@@ -27,6 +29,8 @@ Route::middleware('auth')->group(function () {
 Route::controller(SliderController::class)->middleware(['auth','verified'])->group(function(){
     Route::get('/SliderIndex','Index')->name('slider.index');
     Route::post('/saveSlider','storeslider')->name('slider.store');
+    Route::post('/sliderUpdate','updateslider')->name('slider.update');
+    Route::get('/deleteSlider/{id}','deleteslider')->name('slider.delete');
 });
 
 
