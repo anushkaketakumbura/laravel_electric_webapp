@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\admin\SliderController;
+use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Slider;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -31,6 +33,13 @@ Route::controller(SliderController::class)->middleware(['auth','verified'])->gro
     Route::post('/saveSlider','storeslider')->name('slider.store');
     Route::post('/sliderUpdate','updateslider')->name('slider.update');
     Route::get('/deleteSlider/{id}','deleteslider')->name('slider.delete');
+});
+
+Route::controller(TestimonialController::class)->middleware(['auth','verified'])->group(function(){
+    Route::get('/TestimonialIndex','Index')->name('Tesimonial.index');
+    Route::post('/saveTestimonial','storeTestimonial')->name('Testimonial.store');
+    Route::post('/TestimonialUpdate','updateTestimonial')->name('Testimonial.update');
+    Route::get('/deleteTestimonial/{id}','deleteTestimonial')->name('Testimonial.delete');
 });
 
 

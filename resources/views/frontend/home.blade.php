@@ -483,7 +483,7 @@
 
 
         <!-- Testimonial Start -->
-        {{-- <div class="container-fluid testimonial bg-dark py-5">
+        <div class="container-fluid testimonial bg-dark py-5">
             <div class="container py-5">
                 <div class="row g-5">
                     <div class="col-lg-6 col-xl-5 wow fadeInUp" data-wow-delay="0.2s">
@@ -562,7 +562,7 @@
                     </div>
                 </div>
             </div>
-        </div>   --}}
+        </div>  
         <!-- Testimonial End -->
 
 

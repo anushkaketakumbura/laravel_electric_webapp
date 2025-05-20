@@ -7,16 +7,16 @@
 </div>
 
 <div>
-        @if (@session('success'))
+        @if (@session('Success'))
         <div class="alert alert-success alert-dismisible fade show" role="alert">
             {{ session('success') }}
         </div>
     @endif
 
-    @if ($error->any())
+    @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
-                @foreach ($erros->all as $error)
+                @foreach ($errors->all as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
