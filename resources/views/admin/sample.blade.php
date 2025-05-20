@@ -9,7 +9,7 @@
 <div>
         @if (@session('Success'))
         <div class="alert alert-success alert-dismisible fade show" role="alert">
-            {{ session('success') }}
+            {{ session('Success') }}
         </div>
     @endif
 

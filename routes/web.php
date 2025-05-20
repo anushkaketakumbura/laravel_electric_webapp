@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\ProfileController;
@@ -44,6 +45,11 @@ Route::controller(TestimonialController::class)->middleware(['auth','verified'])
     Route::get('/deleteTestimonial/{id}','deleteTestimonial')->name('Testimonial.delete');
 });
 
+
+Route::controller(SettingsController::class)->middleware(['auth','verified'])->group(function(){
+    Route::get('/Settings','Index')->name('Settings.index');
+    Route::post('/SettingsUpdate','updateSettings')->name('Settings.update');
+});
 
 
 require __DIR__.'/auth.php';

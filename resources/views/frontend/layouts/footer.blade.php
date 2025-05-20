@@ -9,10 +9,10 @@
                     </div>
                     <div class="col-lg-5">
                         <div class="d-flex align-items-center justify-content-center justify-content-lg-end">
-                            <a class="btn btn-light btn-md-square me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-light btn-md-square me-3" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-light btn-md-square me-3" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-light btn-md-square me-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-light btn-md-square me-3" href="{{ $main_settings['facebook_link']}}"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-light btn-md-square me-3" href="{{ $main_settings['twitter_link']}}"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-light btn-md-square me-3" href="{{ $main_settings['instagram_link']}}"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-light btn-md-square me-0" href="{{ $main_settings['linkedin_link']}}"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <div class="footer-item">
-                                <h3 class="text-white mb-4"><i class="fas fa-bolt text-primary me-3"></i>Electra</h3>
+                                <h3 class="text-white mb-4"><i class="fas fa-bolt text-primary me-3"></i>{{ $main_settings['site_name'] }}</h3>
                                 <p class="mb-3">Dolor amet sit justo amet elitr clita ipsum elitr est.Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit.</p>
                             </div>
                         </div>
@@ -48,11 +48,11 @@
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="text-white mb-4">Contact Info</h4>
-                            <a href="#"><i class="fa fa-map-marker-alt text-primary me-2"></i> 123 Street, New York, USA</a>
-                            <a href="mailto:info@example.com"><i class="fas fa-envelope text-primary me-2"></i> info@example.com</a>
-                            <a href="mailto:info@example.com"><i class="fas fa-envelope text-primary me-2"></i> info@example.com</a>
-                            <a href="tel:+012 345 67890"><i class="fas fa-phone text-primary me-2"></i> +012 345 67890</a>
-                            <a href="tel:+012 345 67890" class="mb-3"><i class="fas fa-print text-primary me-2"></i> +012 345 67890</a>
+                            <a href="#"><i class="fa fa-map-marker-alt text-primary me-2"></i> {{ $main_settings['site_address'] }}</a>
+                            <a href="mailto:info@example.com"><i class="fas fa-envelope text-primary me-2"></i> {{ $main_settings['site_email'] }}</a>
+                            <a href="mailto:info@example.com"><i class="fas fa-envelope text-primary me-2"></i> {{ $main_settings['site_email'] }}</a>
+                            <a href="tel:+012 345 67890"><i class="fas fa-phone text-primary me-2"></i> {{$main_settings['site_phone']}}</a>
+                            <a href="tel:+012 345 67890" class="mb-3"><i class="fas fa-print text-primary me-2"></i> {{$main_settings['site_phone']}}</a>
                         </div>
                     </div>
                 </div>

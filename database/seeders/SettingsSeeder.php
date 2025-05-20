@@ -15,6 +15,7 @@ class SettingsSeeder extends Seeder
     {
         $settings = [
             ['key' => 'site_name', 'value' => 'WEB APP'],
+            ['key' => 'site_address', 'value' => 'Laravel'],
             ['key' => 'site_description', 'value' => 'Laravel1'],
             ['key' => 'site_keywords','value' => 'Laravel'],
             ['key' => 'site_author','value' => 'Laravel'],
