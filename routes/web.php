@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Slider;
+use App\Models\Testimonial;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $sliders = Slider::all();
-    return view('frontend.home',compact('sliders'));
+    $testimonials = Testimonial::all();
+    return view('frontend.home',compact('sliders','testimonials'));
 });
 
 
