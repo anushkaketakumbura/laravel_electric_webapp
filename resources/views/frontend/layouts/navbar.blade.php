@@ -53,10 +53,10 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarCollapse">
                                 <div class="navbar-nav mx-0 mx-lg-auto bg-white">
-                                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                                    <a href="about.html" class="nav-item nav-link">About</a>
+                                    <a href="/" class="nav-item nav-link active">Home</a>
+                                    <a href="/about" class="nav-item nav-link">About</a>
                                     <a href="service.html" class="nav-item nav-link">Service</a>
-                                    <a href="blog.html" class="nav-item nav-link">Blog</a>
+                                    <a href="/blog" class="nav-item nav-link">Blog</a>
                                     <div class="nav-item dropdown">
                                         <a href="#" class="nav-link" data-bs-toggle="dropdown">
                                             <span class="dropdown-toggle">Pages</span>

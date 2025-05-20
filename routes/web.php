@@ -19,6 +19,16 @@ Route::get('/', function () {
     return view('frontend.home',compact('sliders','testimonials'));
 });
 
+Route::get('/about',function(){
+    return view('frontend.about');
+});
+
+Route::get('/blog',function(){
+    return view('frontend.blog');
+});
+
+
+
 
 Route::get('/dashboard', function () {
        return view('admin.dashboard');
