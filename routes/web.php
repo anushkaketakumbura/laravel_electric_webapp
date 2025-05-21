@@ -25,12 +25,19 @@ Route::get('/about',function(){
     return view('frontend.about');
 });
 
+Route::get('/service',function(){
+    return view('frontend.service');
+});
+
 Route::get('/blog',function(){
-    $posts = Posts::all();
+    $posts = Posts::orderBy('created_at','desc')->paginate(6);
     return view('frontend.blog',compact('posts'));
 });
 
-
+Route::get('/blog/{slug}',function ($slug){
+    $post = Posts::where('slug', $slug)->first();
+    return view('frontend.post-single',compact('post'));
+});
 
 
 Route::get('/dashboard', function () {

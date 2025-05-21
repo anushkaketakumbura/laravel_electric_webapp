@@ -28,27 +28,33 @@
                 </p>
             </div>
             <div class="row g-4">
-                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <img src="{{asset ('frontend/img/commercial-1.jpg') }}" class="img-fluid w-100" alt="">
-                        </div>
-                        <div class="blog-heading ms-4">
-                            <a href="#" class="h4 mb-0 p-4">Electrifying Reads Explore Our Electricity</a>
-                        </div>
-                        <div class="blog-content bg-light p-4">
-                            <div class="d-flex justify-content-between mb-4">
-                                <p class="mb-0 small"><i class="fa fa-calendar me-2"></i> April 2,2025</p>
-                                <p class="mb-0 small"><i class="fa fa-tag me-2"></i> Electricity Corner</p>
+                @foreach ($posts as $post)
+                    <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="{{asset ('storage/'. $post->image) }}" class="img-fluid w-100" alt="">
                             </div>
-                            <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis rem
-                                distinctio tempora eum quam eligendi. Repudiandae voluptas voluptatibus quo itaque!
-                            </p>
-                            <a class="btn btn-primary py-2 px-4" href="#">Learn More</a>
+                            <div class="blog-heading ms-4">
+                                <a href="#" class="h4 mb-0 p-4">{{ $post->title }}</a>
+                            </div>
+                            <div class="blog-content bg-light p-4">
+                                <div class="d-flex justify-content-between mb-4">
+                                    <p class="mb-0 small"><i class="fa fa-calendar me-2"></i> {{ $post->created_at->format('F j, Y') }}</p>
+                                    <p class="mb-0 small"><i class="fa fa-tag me-2"></i> Electricity Corner</p>
+                                </div>
+                                <p class="mb-4"> {{Str::limit($post->body,50)}}</p>
+                                <a class="btn btn-primary py-2 px-4" href="/blog/{{ $post->slug }}">Learn More</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+                
             </div>
+            
+            <div class="justify-content-center">
+                {{$posts->links('pagination::bootstrap-5')}}
+            </div>
+
         </div>
     </div>
     <!-- Blog End -->
