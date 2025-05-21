@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\admin\PostsController;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Posts;
 use App\Models\Slider;
 use App\Models\Testimonial;
 use Illuminate\Auth\Events\Verified;
@@ -24,7 +26,8 @@ Route::get('/about',function(){
 });
 
 Route::get('/blog',function(){
-    return view('frontend.blog');
+    $posts = Posts::all();
+    return view('frontend.blog',compact('posts'));
 });
 
 
@@ -59,6 +62,14 @@ Route::controller(TestimonialController::class)->middleware(['auth','verified'])
 Route::controller(SettingsController::class)->middleware(['auth','verified'])->group(function(){
     Route::get('/Settings','Index')->name('Settings.index');
     Route::post('/SettingsUpdate','updateSettings')->name('Settings.update');
+});
+
+
+Route::controller(PostsController::class)->middleware(['auth','verified'])->group(function(){
+    Route::get('/PostslIndex','Index')->name('Tesimonial.index');
+    Route::post('/savePosts','storePosts')->name('Posts.store');
+    Route::post('/PostsUpdate','updatePosts')->name('Posts.update');
+    Route::get('/deletePosts/{id}','deletePosts')->name('Posts.delete');
 });
 
 
