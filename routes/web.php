@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\TimeRestrictedAccess;
 use App\Models\Posts;
 use App\Models\Slider;
 use App\Models\Testimonial;
@@ -27,7 +28,7 @@ Route::get('/about',function(){
 
 Route::get('/service',function(){
     return view('frontend.service');
-});
+})->middleware([TimeRestrictedAccess::class]);
 
 Route::get('/blog',function(){
     $posts = Posts::orderBy('created_at','desc')->paginate(6);
