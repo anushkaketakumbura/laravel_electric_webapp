@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\PostsController;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\SliderController;
@@ -74,10 +75,18 @@ Route::controller(SettingsController::class)->middleware(['auth','verified'])->g
 
 
 Route::controller(PostsController::class)->middleware(['auth','verified'])->group(function(){
-    Route::get('/PostslIndex','Index')->name('Tesimonial.index');
+    Route::get('/PostslIndex','Index')->name('Posts.index');
     Route::post('/savePosts','storePosts')->name('Posts.store');
     Route::post('/PostsUpdate','updatePosts')->name('Posts.update');
     Route::get('/deletePosts/{id}','deletePosts')->name('Posts.delete');
+});
+
+
+Route::controller(PermissionController::class)->middleware(['auth','verified'])->group(function(){
+    Route::get('/PermissionIndex','Index')->name('Permission.index');
+    Route::post('/savePermission','storePermission')->name('Permission.store');
+    Route::post('/PermissionUpdate','updatePermission')->name('Permission.update');
+    Route::get('/deletePermission/{id}','deletePermission')->name('Permission.delete');
 });
 
 
