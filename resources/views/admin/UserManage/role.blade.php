@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Permissions</h1>
+    <h1 class="mt-4">Role</h1>
 </div>
 
 <div>
@@ -29,7 +29,7 @@
     <div class="px-4 py-4">
 
         <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Add New Permissions
+            Add New Role
         </button>
 
     </div>
@@ -40,25 +40,25 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Permissions</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Role</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form method="POST" action="/savePermission" enctype="multipart/form-data">
+            <form method="POST" action="/saveRole" enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-body">
                     
-                <!-- Name -->
+                <!-- Role Name -->
                     <div class="mb-3">
-                        <label for="permission_name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="permission_name" name="permission_name" placeholder="Enter Permission Name">
+                        <label for="role_name" class="form-label">Role Name</label>
+                        <input type="text" class="form-control" id="role_name" name="role_name" placeholder="Enter Role Name">
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add Permission</button>
+                    <button type="submit" class="btn btn-primary">Add Role</button>
                 </div>
             </form>
             </div>
@@ -70,7 +70,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            All Permission
+            All Roles
         </div>
 
         <div class="card-body">
@@ -78,40 +78,40 @@
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>Permission Name</th>
+                        <th>Role Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($permissions as $permission )
+                    @foreach ($roles as $role )
                         <tr>
-                            <td>{{$permission->id}}</td>
-                            <td>{{$permission->name}}</td>
+                            <td>{{$role->id}}</td>
+                            <td>{{$role->name}}</td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postsModal{{ $permission->id }}">Edit permission </button>
-                                {{-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal{{ $post->id }}">Delete</button> --}}
-                                <a href="/deletePermission/{{$permission->id}}" class="btn btn-danger">Delete</a>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postsModal{{ $role->id }}">Edit role </button>
+                                <a href="/PermissionToRole/{{$role->id}}" class="btn btn-info">Add Permission to Role</a>
+                                <a href="/deleteRole/{{$role->id}}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
 
                         <!-- Start Modal -->
-                        <div class="modal fade" id="postsModal{{ $permission->id }}" tabindex="-1" aria-labelledby="postsModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="postsModal{{ $role->id }}" tabindex="-1" aria-labelledby="postsModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="postsModalLabel">Edit Permission {{ $permission->id }}</h1>
+                                        <h1 class="modal-title fs-5" id="postsModalLabel">Edit role {{ $role->id }}</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
 
-                                    <form method="POST" action="/PermissionUpdate" enctype="multipart/form-data">
+                                    <form method="POST" action="/RoleUpdate" enctype="multipart/form-data">
                                         @csrf
-                                        <input type="hidden" name="permission_id" value="{{ $permission->id }}">
+                                        <input type="hidden" name="role_id" value="{{ $role->id }}">
                                         <div class="modal-body">
                                             
                                             <!-- Name -->
                                             <div class="mb-3">
-                                                <label for="permission_name" class="form-label">Name</label>
-                                                <input type="text" class="form-control" id="permission_name" name="permission_name" value="{{ $permission->name }}">
+                                                <label for="role_name" class="form-label">Name</label>
+                                                <input type="text" class="form-control" id="role_name" name="role_name" value="{{ $role->name }}">
                                             </div>
                                             
                                         </div>

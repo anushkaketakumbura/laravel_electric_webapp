@@ -22,6 +22,24 @@ class PermissionController extends Controller
             'name' => $validateData['permission_name'],
         ]);
 
-        return redirect()->back()->with('Success', 'Permission added successfully!');
+        return redirect()->back()->with('Success', 'Permission added successfully!'); 
+    }
+
+    public function updatePermission(Request $request){
+        $validateData = $request->validate([
+            'permission_name' => 'required'
+        ]);
+
+        $update = Permission::find($request->permission_id);
+        $update->name = $validateData['permission_name'];
+        $update->save();
+
+        return redirect()->back()->with('Success', 'Permission updated successfully!'); 
+    }
+
+    public function deletePermission($id){
+        $permission = Permission::find($id);
+        $permission->delete();
+        return redirect()->back()->with('Success', 'Permission deleted successfully!');
     }
 }

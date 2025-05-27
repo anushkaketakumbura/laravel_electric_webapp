@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\PostsController;
+use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\TestimonialController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\TimeRestrictedAccess;
 use App\Models\Posts;
@@ -87,6 +89,24 @@ Route::controller(PermissionController::class)->middleware(['auth','verified'])-
     Route::post('/savePermission','storePermission')->name('Permission.store');
     Route::post('/PermissionUpdate','updatePermission')->name('Permission.update');
     Route::get('/deletePermission/{id}','deletePermission')->name('Permission.delete');
+});
+
+Route::controller(RoleController::class)->middleware(['auth','verified'])->group(function(){
+    Route::get('/RoleIndex','Index')->name('Role.index');
+    Route::post('/saveRole','storeRole')->name('Role.store');
+    Route::post('/RoleUpdate','updateRole')->name('Role.update');
+    Route::get('/deleteRole/{id}','deleteRole')->name('Role.delete');
+
+    Route::get('/PermissionToRole/{id}','permissionToRole')->name('Role.permissionToRole');
+    Route::put('/givePermissionToRole/{id}','givePermissionToRole')->name('Role.givePermissionToRole');
+    Route::put('/removePermissionToRole/{id}','removePermissionToRole')->name('Role.removePermissionToRole');
+});
+
+Route::controller(UserController::class)->middleware(['auth','verified'])->group(function(){
+    Route::get('/UserIndex','Index')->name('User.index');
+    Route::post('/saveUser','storeUser')->name('User.store');
+    Route::post('/UserUpdate','updateUser')->name('User.update');
+    Route::get('/deleteUser/{id}','deleteUser')->name('User.delete');
 });
 
 

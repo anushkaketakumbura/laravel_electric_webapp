@@ -67,8 +67,8 @@
                             </a>
                             <div class="collapse" id="userRoleManager" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/">Users</a>
-                                    <a class="nav-link" href="/">Roles</a>
+                                    <a class="nav-link" href="/UserIndex">Users</a>
+                                    <a class="nav-link" href="/RoleIndex">Roles</a>
                                     <a class="nav-link" href="/PermissionIndex">Permissions</a>
                                 </nav>
                             </div>

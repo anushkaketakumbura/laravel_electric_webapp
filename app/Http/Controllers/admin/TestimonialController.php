@@ -66,7 +66,7 @@ class TestimonialController extends Controller
         return redirect()->back()->with('Success', 'Testimonial Updated Successfully !');
     }
 
-       public function deleteTestimonial($id){
+       public function deleteTestimonial($id){ 
         $delete = Testimonial::find($id);
         $delete->delete();
 
