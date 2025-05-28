@@ -116,8 +116,9 @@
                         <td> <img src="{{asset ('storage/'.$post->image)}}" alt="" width="100"> </td>
                         <td>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postsModal{{ $post->id }}">Edit Post </button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal{{ $post->id }}">Delete </button>
                             {{-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal{{ $post->id }}">Delete</button> --}}
-                            <a href="/deletePosts/{{$post->id}}" class="btn btn-danger">Delete</a>
+                            {{-- <a href="/deletePosts/{{$post->id}}" class="btn btn-danger">Delete</a> --}}
                         </td>
                     </tr>
 
@@ -167,6 +168,26 @@
                         </div>
                     </div>
                  <!-- End Modal -->
+
+                    <!-- Delete Modal -->
+                    <div class="modal fade" id="DeleteModal{{ $post->id }}" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="DeleteModalLabel">Delete Post {{$post->id}}</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            Are you sure you want to delete post: {{ $post->id }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="/deletePosts/{{$post->id}}" class="btn btn-danger">Delete</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Delete Modal -->
                         
                 @endforeach
                     

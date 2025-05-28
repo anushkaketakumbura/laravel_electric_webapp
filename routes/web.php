@@ -51,7 +51,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->middleware(['role:Super Admin'])->name('profile.destroy');
 });
 
 
@@ -59,20 +59,20 @@ Route::controller(SliderController::class)->middleware(['auth','verified'])->gro
     Route::get('/SliderIndex','Index')->name('slider.index');
     Route::post('/saveSlider','storeslider')->name('slider.store');
     Route::post('/sliderUpdate','updateslider')->name('slider.update');
-    Route::get('/deleteSlider/{id}','deleteslider')->name('slider.delete');
+    Route::get('/deleteSlider/{id}','deleteslider')->middleware(['role:Super Admin'])->name('slider.delete');
 });
 
 Route::controller(TestimonialController::class)->middleware(['auth','verified'])->group(function(){
     Route::get('/TestimonialIndex','Index')->name('Tesimonial.index');
     Route::post('/saveTestimonial','storeTestimonial')->name('Testimonial.store');
     Route::post('/TestimonialUpdate','updateTestimonial')->name('Testimonial.update');
-    Route::get('/deleteTestimonial/{id}','deleteTestimonial')->name('Testimonial.delete');
+    Route::get('/deleteTestimonial/{id}','deleteTestimonial')->middleware(['role:Super Admin'])->name('Testimonial.delete');
 });
 
 
-Route::controller(SettingsController::class)->middleware(['auth','verified'])->group(function(){
+Route::controller(SettingsController::class)->middleware(['auth','verified','role:Super Admin|Admin'])->group(function(){
     Route::get('/Settings','Index')->name('Settings.index');
-    Route::post('/SettingsUpdate','updateSettings')->name('Settings.update');
+    Route::post('/SettingsUpdate','updateSettings')->middleware(['role:Super Admin'])->name('Settings.update');
 });
 
 
@@ -88,25 +88,25 @@ Route::controller(PermissionController::class)->middleware(['auth','verified'])-
     Route::get('/PermissionIndex','Index')->name('Permission.index');
     Route::post('/savePermission','storePermission')->name('Permission.store');
     Route::post('/PermissionUpdate','updatePermission')->name('Permission.update');
-    Route::get('/deletePermission/{id}','deletePermission')->name('Permission.delete');
+    Route::get('/deletePermission/{id}','deletePermission')->middleware(['role:Super Admin'])->name('Permission.delete');
 });
 
 Route::controller(RoleController::class)->middleware(['auth','verified'])->group(function(){
     Route::get('/RoleIndex','Index')->name('Role.index');
     Route::post('/saveRole','storeRole')->name('Role.store');
     Route::post('/RoleUpdate','updateRole')->name('Role.update');
-    Route::get('/deleteRole/{id}','deleteRole')->name('Role.delete');
+    Route::get('/deleteRole/{id}','deleteRole')->middleware(['role:Super Admin'])->name('Role.delete');
 
     Route::get('/PermissionToRole/{id}','permissionToRole')->name('Role.permissionToRole');
     Route::put('/givePermissionToRole/{id}','givePermissionToRole')->name('Role.givePermissionToRole');
     Route::put('/removePermissionToRole/{id}','removePermissionToRole')->name('Role.removePermissionToRole');
 });
 
-Route::controller(UserController::class)->middleware(['auth','verified'])->group(function(){
+Route::controller(UserController::class)->middleware(['auth','verified','role:Super Admin|Admin'])->group(function(){
     Route::get('/UserIndex','Index')->name('User.index');
     Route::post('/saveUser','storeUser')->name('User.store');
-    Route::post('/UserUpdate','updateUser')->name('User.update');
-    Route::get('/deleteUser/{id}','deleteUser')->name('User.delete');
+    Route::post('/UserUpdate','updateUser')->middleware(['role:Super Admin'])->name('User.update');
+    Route::get('/deleteUser/{id}','deleteUser')->middleware(['role:Super Admin'])->name('User.delete');
 });
 
 

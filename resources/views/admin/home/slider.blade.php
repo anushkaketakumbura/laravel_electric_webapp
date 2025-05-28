@@ -116,7 +116,8 @@
                         <td>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#slideModal{{ $slider->id }}">Edit Slide </button>
                             {{-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal{{ $slider->id }}">Delete</button> --}}
-                            <a href="/deleteSlider/{{$slider->id}}" class="btn btn-danger">Delete</a>
+                            {{-- <a href="/deleteSlider/{{$slider->id}}" class="btn btn-danger">Delete</a> --}}
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal{{ $slider->id }}">Delete </button>
                         </td>
                     </tr>
 
@@ -170,7 +171,27 @@
                             </div>
                         </div>
                     </div>
-                 <!-- End Modal -->
+                    <!-- End Modal -->
+                    
+                    <!-- Delete Modal -->
+                    <div class="modal fade" id="DeleteModal{{ $slider->id }}" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="DeleteModalLabel">Delete Slide {{$slider->id}}</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            Are you sure you want to delete slide: {{ $slider->id }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="/deleteSlider/{{$slider->id}}" class="btn btn-danger">Delete</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Delete Modal -->
                         
                 @endforeach
                     
