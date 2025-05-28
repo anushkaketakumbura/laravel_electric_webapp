@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\TestimonialController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\TimeRestrictedAccess;
 use App\Models\Posts;
@@ -43,6 +44,9 @@ Route::get('/blog/{slug}',function ($slug){
     return view('frontend.post-single',compact('post'));
 });
 
+Route::get('/contactus', function(){
+    return view('frontend.contactus');
+});
 
 Route::get('/dashboard', function () {
        return view('admin.dashboard');
@@ -54,6 +58,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->middleware(['role:Super Admin'])->name('profile.destroy');
 });
 
+Route::controller(ContactController::class)->group(function(){
+    Route::get('/adminContact', 'index')->middleware(['role:super-admin'])->name('contact');
+    Route::post('/contactSave', 'store')->name('contact.store');    
+    Route::get('/contact/{id}/delete', 'destroy')->middleware(['role:super-admin'])->name('contact.delete');
+});
 
 Route::controller(SliderController::class)->middleware(['auth','verified'])->group(function(){
     Route::get('/SliderIndex','Index')->name('slider.index');
