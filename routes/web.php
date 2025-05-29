@@ -55,27 +55,27 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->middleware(['role:Super Admin'])->name('profile.destroy');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::controller(ContactController::class)->group(function(){
-    Route::get('/adminContact', 'index')->middleware(['role:super-admin'])->name('contact');
+Route::controller(ContactController::class)->middleware(['auth','verified','role:Super Admin'])->group(function(){
+    Route::get('/adminContact', 'index')->middleware(['role:Super Admin'])->name('contact');
     Route::post('/contactSave', 'store')->name('contact.store');    
-    Route::get('/contact/{id}/delete', 'destroy')->middleware(['role:super-admin'])->name('contact.delete');
+    Route::get('/contact/{id}/delete', 'destroy')->middleware(['role:Super Admin'])->name('contact.delete');
 });
 
 Route::controller(SliderController::class)->middleware(['auth','verified'])->group(function(){
     Route::get('/SliderIndex','Index')->name('slider.index');
     Route::post('/saveSlider','storeslider')->name('slider.store');
     Route::post('/sliderUpdate','updateslider')->name('slider.update');
-    Route::get('/deleteSlider/{id}','deleteslider')->middleware(['role:Super Admin'])->name('slider.delete');
+    Route::get('/deleteSlider/{id}','deleteslider')->name('slider.delete');
 });
 
 Route::controller(TestimonialController::class)->middleware(['auth','verified'])->group(function(){
     Route::get('/TestimonialIndex','Index')->name('Tesimonial.index');
     Route::post('/saveTestimonial','storeTestimonial')->name('Testimonial.store');
     Route::post('/TestimonialUpdate','updateTestimonial')->name('Testimonial.update');
-    Route::get('/deleteTestimonial/{id}','deleteTestimonial')->middleware(['role:Super Admin'])->name('Testimonial.delete');
+    Route::get('/deleteTestimonial/{id}','deleteTestimonial')->name('Testimonial.delete');
 });
 
 

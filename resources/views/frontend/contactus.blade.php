@@ -65,41 +65,60 @@
                     <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.4s">
                         <div>
                             <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a class="text-primary fw-bold" href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                            <form>
+                            
+                            @if (@session('Success'))
+                                <div class="alert alert-success alert-dismisible fade show" role="alert">
+                                    {{ session('Success') }}
+                                </div>
+                            @endif
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                         @endforeach
+                                    </ul>
+                                </div>
+                                
+                            @endif
+
+                            <form method="POST" action="{{ route('contact.store') }}" >
+                                @csrf
                                 <div class="row g-4">
                                     <div class="col-lg-12 col-xl-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control border-0" id="name" placeholder="Your Name">
+                                            <input type="text" class="form-control border-0" id="sender_name"  name="sender_name" placeholder="Your Name">
                                             <label for="name">Your Name</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-xl-6">
                                         <div class="form-floating">
-                                            <input type="email" class="form-control border-0" id="email" placeholder="Your Email">
+                                            <input type="email" class="form-control border-0" id="sender_email" name="sender_email" placeholder="Your Email">
                                             <label for="email">Your Email</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-xl-6">
                                         <div class="form-floating">
-                                            <input type="phone" class="form-control border-0" id="phone" placeholder="Phone">
+                                            <input type="phone" class="form-control border-0" id="sender_phone" name="sender_phone" placeholder="Phone">
                                             <label for="phone">Your Phone</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-xl-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control border-0" id="project" placeholder="Project">
+                                            <input type="text" class="form-control border-0" id="sender_project" name="sender_project"  placeholder="Project">
                                             <label for="project">Your Project</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control border-0" id="subject" placeholder="Subject">
+                                            <input type="text" class="form-control border-0" id="sender_subject" name="sender_subject" placeholder="Subject">
                                             <label for="subject">Subject</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <textarea class="form-control border-0" placeholder="Leave a message here" id="message" style="height: 125px"></textarea>
+                                            <textarea class="form-control border-0" placeholder="Leave a message here" id="sender_message" name="sender_message" style="height: 125px"></textarea>
                                             <label for="message">Message</label>
                                         </div>
                                     </div>
@@ -110,7 +129,7 @@
                                           </div>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3">Send Message</button>
+                                        <button type="submit" class="btn btn-primary w-100 py-3">Send Message</button>
                                     </div>
                                 </div>
                             </form>
